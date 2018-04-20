@@ -48,19 +48,22 @@
             this.c_CardType = new System.Windows.Forms.ComboBox();
             this.d_Expire = new System.Windows.Forms.DateTimePicker();
             this.t_Back = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // c_Profile
             // 
             this.c_Profile.FormattingEnabled = true;
+            this.c_Profile.Items.AddRange(new object[] {
+            "test"});
             this.c_Profile.Location = new System.Drawing.Point(12, 12);
             this.c_Profile.Name = "c_Profile";
             this.c_Profile.Size = new System.Drawing.Size(100, 21);
             this.c_Profile.TabIndex = 0;
+            this.c_Profile.SelectedIndexChanged += new System.EventHandler(this.c_Profile_SelectedIndexChanged);
             // 
             // b_Order
             // 
+            this.b_Order.Enabled = false;
             this.b_Order.Location = new System.Drawing.Point(344, 293);
             this.b_Order.Name = "b_Order";
             this.b_Order.Size = new System.Drawing.Size(75, 23);
@@ -71,7 +74,7 @@
             // 
             // b_Save
             // 
-            this.b_Save.Location = new System.Drawing.Point(217, 10);
+            this.b_Save.Location = new System.Drawing.Point(118, 10);
             this.b_Save.Name = "b_Save";
             this.b_Save.Size = new System.Drawing.Size(75, 23);
             this.b_Save.TabIndex = 2;
@@ -81,7 +84,7 @@
             // 
             // b_Delete
             // 
-            this.b_Delete.Location = new System.Drawing.Point(298, 10);
+            this.b_Delete.Location = new System.Drawing.Point(199, 10);
             this.b_Delete.Name = "b_Delete";
             this.b_Delete.Size = new System.Drawing.Size(75, 23);
             this.b_Delete.TabIndex = 3;
@@ -90,6 +93,7 @@
             // 
             // t_Addr
             // 
+            this.t_Addr.Enabled = false;
             this.t_Addr.Location = new System.Drawing.Point(13, 54);
             this.t_Addr.Name = "t_Addr";
             this.t_Addr.Size = new System.Drawing.Size(100, 20);
@@ -106,6 +110,7 @@
             // 
             // t_Town
             // 
+            this.t_Town.Enabled = false;
             this.t_Town.Location = new System.Drawing.Point(119, 54);
             this.t_Town.Name = "t_Town";
             this.t_Town.Size = new System.Drawing.Size(122, 20);
@@ -113,6 +118,7 @@
             // 
             // c_AddrType
             // 
+            this.c_AddrType.Enabled = false;
             this.c_AddrType.FormattingEnabled = true;
             this.c_AddrType.Location = new System.Drawing.Point(325, 54);
             this.c_AddrType.Name = "c_AddrType";
@@ -121,6 +127,7 @@
             // 
             // c_State
             // 
+            this.c_State.Enabled = false;
             this.c_State.FormattingEnabled = true;
             this.c_State.Location = new System.Drawing.Point(247, 54);
             this.c_State.Name = "c_State";
@@ -157,6 +164,7 @@
             // 
             // t_CardNum
             // 
+            this.t_CardNum.Enabled = false;
             this.t_CardNum.Location = new System.Drawing.Point(12, 97);
             this.t_CardNum.Name = "t_CardNum";
             this.t_CardNum.PasswordChar = '*';
@@ -183,6 +191,7 @@
             // 
             // b_Add
             // 
+            this.b_Add.Enabled = false;
             this.b_Add.Location = new System.Drawing.Point(13, 178);
             this.b_Add.Name = "b_Add";
             this.b_Add.Size = new System.Drawing.Size(75, 23);
@@ -193,6 +202,7 @@
             // 
             // b_Clear
             // 
+            this.b_Clear.Enabled = false;
             this.b_Clear.Location = new System.Drawing.Point(92, 178);
             this.b_Clear.Name = "b_Clear";
             this.b_Clear.Size = new System.Drawing.Size(75, 23);
@@ -203,6 +213,7 @@
             // 
             // c_CardType
             // 
+            this.c_CardType.Enabled = false;
             this.c_CardType.FormattingEnabled = true;
             this.c_CardType.Location = new System.Drawing.Point(119, 97);
             this.c_CardType.Name = "c_CardType";
@@ -211,6 +222,7 @@
             // 
             // d_Expire
             // 
+            this.d_Expire.Enabled = false;
             this.d_Expire.Location = new System.Drawing.Point(197, 97);
             this.d_Expire.Name = "d_Expire";
             this.d_Expire.Size = new System.Drawing.Size(200, 20);
@@ -218,25 +230,18 @@
             // 
             // t_Back
             // 
+            this.t_Back.Enabled = false;
             this.t_Back.Location = new System.Drawing.Point(13, 124);
             this.t_Back.Name = "t_Back";
             this.t_Back.PasswordChar = '*';
             this.t_Back.Size = new System.Drawing.Size(44, 20);
             this.t_Back.TabIndex = 20;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(118, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(93, 20);
-            this.textBox1.TabIndex = 21;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 327);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.t_Back);
             this.Controls.Add(this.d_Expire);
             this.Controls.Add(this.c_CardType);
@@ -290,7 +295,6 @@
 		private System.Windows.Forms.ComboBox c_CardType;
 		private System.Windows.Forms.DateTimePicker d_Expire;
 		private System.Windows.Forms.TextBox t_Back;
-		private System.Windows.Forms.TextBox textBox1;
 	}
 }
 
