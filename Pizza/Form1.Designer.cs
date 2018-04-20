@@ -47,7 +47,8 @@
 			this.b_Clear = new System.Windows.Forms.Button();
 			this.c_CardType = new System.Windows.Forms.ComboBox();
 			this.d_Expire = new System.Windows.Forms.DateTimePicker();
-			this.t_Something = new System.Windows.Forms.TextBox();
+			this.t_Back = new System.Windows.Forms.TextBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// c_Profile
@@ -55,7 +56,7 @@
 			this.c_Profile.FormattingEnabled = true;
 			this.c_Profile.Location = new System.Drawing.Point(12, 12);
 			this.c_Profile.Name = "c_Profile";
-			this.c_Profile.Size = new System.Drawing.Size(155, 21);
+			this.c_Profile.Size = new System.Drawing.Size(100, 21);
 			this.c_Profile.TabIndex = 0;
 			// 
 			// b_Order
@@ -70,16 +71,17 @@
 			// 
 			// b_Save
 			// 
-			this.b_Save.Location = new System.Drawing.Point(173, 12);
+			this.b_Save.Location = new System.Drawing.Point(217, 10);
 			this.b_Save.Name = "b_Save";
 			this.b_Save.Size = new System.Drawing.Size(75, 23);
 			this.b_Save.TabIndex = 2;
-			this.b_Save.Text = "Save";
+			this.b_Save.Text = "Add";
 			this.b_Save.UseVisualStyleBackColor = true;
+			this.b_Save.Click += new System.EventHandler(this.b_Save_Click);
 			// 
 			// b_Delete
 			// 
-			this.b_Delete.Location = new System.Drawing.Point(255, 11);
+			this.b_Delete.Location = new System.Drawing.Point(298, 10);
 			this.b_Delete.Name = "b_Delete";
 			this.b_Delete.Size = new System.Drawing.Size(75, 23);
 			this.b_Delete.TabIndex = 3;
@@ -172,6 +174,7 @@
 			// 
 			// r_Order
 			// 
+			this.r_Order.Enabled = false;
 			this.r_Order.Location = new System.Drawing.Point(13, 207);
 			this.r_Order.Name = "r_Order";
 			this.r_Order.Size = new System.Drawing.Size(406, 66);
@@ -186,6 +189,7 @@
 			this.b_Add.TabIndex = 16;
 			this.b_Add.Text = "Add Item";
 			this.b_Add.UseVisualStyleBackColor = true;
+			this.b_Add.Click += new System.EventHandler(this.b_Add_Click);
 			// 
 			// b_Clear
 			// 
@@ -195,6 +199,7 @@
 			this.b_Clear.TabIndex = 17;
 			this.b_Clear.Text = "Clear";
 			this.b_Clear.UseVisualStyleBackColor = true;
+			this.b_Clear.Click += new System.EventHandler(this.b_Clear_Click);
 			// 
 			// c_CardType
 			// 
@@ -211,19 +216,28 @@
 			this.d_Expire.Size = new System.Drawing.Size(200, 20);
 			this.d_Expire.TabIndex = 19;
 			// 
-			// t_Something
+			// t_Back
 			// 
-			this.t_Something.Location = new System.Drawing.Point(13, 124);
-			this.t_Something.Name = "t_Something";
-			this.t_Something.Size = new System.Drawing.Size(100, 20);
-			this.t_Something.TabIndex = 20;
+			this.t_Back.Location = new System.Drawing.Point(13, 124);
+			this.t_Back.Name = "t_Back";
+			this.t_Back.PasswordChar = '*';
+			this.t_Back.Size = new System.Drawing.Size(44, 20);
+			this.t_Back.TabIndex = 20;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(118, 12);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(93, 20);
+			this.textBox1.TabIndex = 21;
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(430, 327);
-			this.Controls.Add(this.t_Something);
+			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.t_Back);
 			this.Controls.Add(this.d_Expire);
 			this.Controls.Add(this.c_CardType);
 			this.Controls.Add(this.b_Clear);
@@ -243,8 +257,10 @@
 			this.Controls.Add(this.b_Save);
 			this.Controls.Add(this.b_Order);
 			this.Controls.Add(this.c_Profile);
+			this.MaximumSize = new System.Drawing.Size(446, 366);
+			this.MinimumSize = new System.Drawing.Size(446, 366);
 			this.Name = "Form1";
-			this.Text = "Microsoft Pizza";
+			this.Text = "M$ Pizza";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -271,7 +287,8 @@
 		private System.Windows.Forms.Button b_Clear;
 		private System.Windows.Forms.ComboBox c_CardType;
 		private System.Windows.Forms.DateTimePicker d_Expire;
-		private System.Windows.Forms.TextBox t_Something;
+		private System.Windows.Forms.TextBox t_Back;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }
 
