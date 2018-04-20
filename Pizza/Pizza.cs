@@ -12,6 +12,16 @@ namespace Pizza
 			addr, town, state, addrType,
 			cardNum, cardType, expire, back, order;
 
+        public static bool orderPlaced;
 
+        public void placeOrder()
+        {
+
+        }
+
+        public void trackOrder()
+        {
+
+        }
 	}
 }

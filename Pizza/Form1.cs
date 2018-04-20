@@ -12,6 +12,13 @@ namespace Pizza
 {
 	public partial class Form1 : Form
 	{
+        /*Todo:
+         * Saving info
+         * Placing order
+         * Order tracking
+         * On deliver event (closing)
+         */
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -34,11 +41,15 @@ namespace Pizza
 
 		private void b_Order_Click(object sender, EventArgs e)
 		{
+            Pizza.orderPlaced = true;
 			setPizza();
 			//todo
 
 			MessageBox.Show("Your order has been placed to the nearest Domnoos.");
-			//tracker
+            //tracker
+
+            Hide();
+            new Tracker().Show();
 		}
 
 		private void b_Save_Click(object sender, EventArgs e)
@@ -56,5 +67,18 @@ namespace Pizza
 		{
 			//todo: display menu
 		}
-	}
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Pizza.orderPlaced) {
+                e.Cancel = true;
+                MessageBox.Show("Not until your order has been arived.");
+            }
+        }
+    }
 }
