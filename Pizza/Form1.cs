@@ -19,15 +19,15 @@ namespace Pizza
          * On deliver event (closing)
          * 
          * Optional:
+         * More places, payment options, etc
          * Tab stops
-         * Save accounts in DB
+         * Install script
          */
 
 		public Form1()
 		{
 			InitializeComponent();
-			c_State.Items.Add("MN");
-			c_CardType.Items.Add("Visa");
+            c_Profile.Items.AddRange(NewAccount.readAccounts());
 		}
 
 		private void setPizza()
@@ -54,14 +54,14 @@ namespace Pizza
             Pizza.customerLastName = values[1];
             Pizza.customerEmail = values[2];
             Pizza.customerPhoneNumber = values[3];
-            Pizza.addr = values[4];
-            Pizza.town = values[5];
-            Pizza.state = values[6];
-            Pizza.addrType = values[7];
-            Pizza.cardNum = values[8];
-            Pizza.cardType = values[9];
-            Pizza.expire = values[10];
-            Pizza.back = values[11];
+            t_Addr.Text = Pizza.addr = values[4];
+            t_Town.Text = Pizza.town = values[5];
+            c_State.Text = Pizza.state = values[6];
+            c_AddrType.Text = Pizza.addrType = values[7];
+            t_CardNum.Text = Pizza.cardNum = values[8];
+            c_CardType.Text = Pizza.cardType = values[9];
+            d_Expire.Text = Pizza.expire = values[10];
+            t_Back.Text = Pizza.back = values[11];
         }
 
         private void b_Order_Click(object sender, EventArgs e)
@@ -84,6 +84,8 @@ namespace Pizza
             NewAccount.canceled = true;
             setPizza(newAccount);
             NewAccount.saveAccount(this);
+            c_Profile.Items.AddRange(NewAccount.readAccounts());
+            c_Profile.Refresh();
         }
 
         private void b_Clear_Click(object sender, EventArgs e)
@@ -129,6 +131,13 @@ namespace Pizza
             String[] info = NewAccount.accountInfo(c_Profile.Text);
             setPizza(info);
             if (info[0] == "") disableOrder();
+        }
+
+        private void b_Delete_Click(object sender, EventArgs e)
+        {
+            NewAccount.removeAccount(c_Profile.Text);
+            c_Profile.Items.Remove(c_Profile.Text);
+            c_Profile.Refresh();
         }
     }
 }

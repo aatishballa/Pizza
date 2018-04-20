@@ -90,6 +90,7 @@
             this.b_Delete.TabIndex = 3;
             this.b_Delete.Text = "Delete";
             this.b_Delete.UseVisualStyleBackColor = true;
+            this.b_Delete.Click += new System.EventHandler(this.b_Delete_Click);
             // 
             // t_Addr
             // 
@@ -120,6 +121,9 @@
             // 
             this.c_AddrType.Enabled = false;
             this.c_AddrType.FormattingEnabled = true;
+            this.c_AddrType.Items.AddRange(new object[] {
+            "House",
+            "Appartment"});
             this.c_AddrType.Location = new System.Drawing.Point(325, 54);
             this.c_AddrType.Name = "c_AddrType";
             this.c_AddrType.Size = new System.Drawing.Size(99, 21);
@@ -129,6 +133,8 @@
             // 
             this.c_State.Enabled = false;
             this.c_State.FormattingEnabled = true;
+            this.c_State.Items.AddRange(new object[] {
+            "MN"});
             this.c_State.Location = new System.Drawing.Point(247, 54);
             this.c_State.Name = "c_State";
             this.c_State.Size = new System.Drawing.Size(72, 21);
@@ -215,6 +221,8 @@
             // 
             this.c_CardType.Enabled = false;
             this.c_CardType.FormattingEnabled = true;
+            this.c_CardType.Items.AddRange(new object[] {
+            "Visa"});
             this.c_CardType.Location = new System.Drawing.Point(119, 97);
             this.c_CardType.Name = "c_CardType";
             this.c_CardType.Size = new System.Drawing.Size(72, 21);

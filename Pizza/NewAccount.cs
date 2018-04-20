@@ -52,10 +52,10 @@ namespace Pizza
             return cDrive.DriveFormat == "NTFS" && !failedBefore;
         }
 
-        public static void saveAccount(Form1 form)
+        public static void saveAccount(Form1 form, bool check = true)
         {
             String newAccountName = Pizza.customerFirstName + " " + Pizza.customerLastName;
-            if (readAccounts().Contains(newAccountName))
+            if (readAccounts().Contains(newAccountName) && check)
             {
                 MessageBox.Show("Account name already taken.");
                 return;
@@ -85,7 +85,7 @@ namespace Pizza
                 catch (Exception e)
                 {
                     failedBefore = true;
-                    saveAccount(form);
+                    saveAccount(form, false);
                     return;
                 }
             }
@@ -115,6 +115,7 @@ namespace Pizza
             {
                 String[] infos = line.Split('\t');
                 if (infos.Length < 2) continue;
+                if (infos[0] == "") continue;
                 names.Add(infos[0] + " " + infos[1]);
             }
 
@@ -123,7 +124,8 @@ namespace Pizza
 
         private static String profileData()
         {
-            String data;
+            String data = "";
+            if (!System.IO.File.Exists("profiles.txt")) return data;
 
             if (canEncrypt())
             {
@@ -137,7 +139,7 @@ namespace Pizza
                     return profileData();
                 }
             }
-
+            
             data = System.IO.File.ReadAllText("profiles.txt");
             if (canEncrypt())
             {
@@ -160,14 +162,41 @@ namespace Pizza
         public static String[] accountInfo(String name)
         {
             String data = profileData();
-            if (!profilesFromData(data).Contains(name))
+            String[] lines = data.Split(new[] { "\r\n" }, StringSplitOptions.None);
+            foreach (String line in lines)
             {
-                MessageBox.Show("Account info not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new[]{"", "", "", "", "", "", "", "", "", "", "", ""};
+                String[] infos = line.Split('\t');
+                if (infos.Length < 2) continue;
+                if (infos[0] + " " + infos[1] == name)
+                {
+                    return infos;
+                }
             }
 
-            String[] info = new String[0];
-            return info;
+            MessageBox.Show("Account info not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return new[] { "", "", "", "", "", "", "", "", "", "", "", "" };
+        }
+
+        public static void removeAccount(String name)
+        {
+            String data = profileData();
+            String newData = "";
+            String[] lines = data.Split(new[] { "\r\n" }, StringSplitOptions.None);
+            foreach (String line in lines)
+            {
+                String[] infos = line.Split('\t');
+                if (infos.Length < 2) continue;
+                if (infos[0] + " " + infos[1] == name) continue;
+                newData += line + "\r\n";
+            }
+
+            if (canEncrypt())
+                System.IO.File.Decrypt("profiles.txt");
+
+            System.IO.File.WriteAllText("profiles.txt", newData);
+
+            if (canEncrypt())
+                System.IO.File.Encrypt("profiles.txt");
         }
     }
 }
