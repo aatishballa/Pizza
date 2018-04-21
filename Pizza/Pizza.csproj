@@ -32,8 +32,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FubarCoder.RestSharp.Portable.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.Core.4.0.8\lib\net45\FubarCoder.RestSharp.Portable.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubarCoder.RestSharp.Portable.HttpClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.HttpClient.4.0.8\lib\net45\FubarCoder.RestSharp.Portable.HttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.2.1\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +62,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DominosAPI\DominosApi.cs" />
+    <Compile Include="DominosAPI\IDominosApi.cs" />
+    <Compile Include="DominosAPI\PaymentType.cs" />
+    <Compile Include="DominosAPI\RestModels\Address.cs" />
+    <Compile Include="DominosAPI\RestModels\Coupon.cs" />
+    <Compile Include="DominosAPI\RestModels\Customer.cs" />
+    <Compile Include="DominosAPI\RestModels\Order.cs" />
+    <Compile Include="DominosAPI\RestModels\OrderStatus.cs" />
+    <Compile Include="DominosAPI\RestModels\OrderWithPayment.cs" />
+    <Compile Include="DominosAPI\RestModels\Payment.cs" />
+    <Compile Include="DominosAPI\RestModels\Product.cs" />
+    <Compile Include="DominosAPI\RestModels\Requests\PlaceOrderRequest.cs" />
+    <Compile Include="DominosAPI\RestModels\Requests\PriceOrderRequest.cs" />
+    <Compile Include="DominosAPI\RestModels\Responses\LocationQueryResponse.cs" />
+    <Compile Include="DominosAPI\RestModels\Responses\MenuQueryResponse.cs" />
+    <Compile Include="DominosAPI\RestModels\Responses\OrderResponse.cs" />
+    <Compile Include="DominosAPI\RestModels\Responses\SoapTrackingResponse.cs" />
+    <Compile Include="DominosAPI\RestModels\Responses\StoreDetailsQueryResponse.cs" />
+    <Compile Include="DominosAPI\RestModels\ReturnedOrder.cs" />
+    <Compile Include="DominosAPI\RestModels\Store.cs" />
+    <Compile Include="DominosAPI\RestUtils.cs" />
+    <Compile Include="DominosAPI\URI.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +114,7 @@
     <EmbeddedResource Include="Tracker.resx">
       <DependentUpon>Tracker.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DominosAPI\DominosApi.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
