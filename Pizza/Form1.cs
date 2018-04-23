@@ -8,12 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using DominosApi;
+using DominosApi.RestModels;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Pizza
 {
 	public partial class Form1 : Form
 	{
-        /*Todo:
+		/*Todo:
          * Saving info (encryption, reading/loading accounts)
          * Placing order
          * On deliver event (closing)
@@ -22,12 +26,42 @@ namespace Pizza
          * More places, payment options, etc
          * Tab stops
          * Install script
+		 * Check https://order.dominos.com/power/store/{storeID}/profile for acceptable cards and other info
          */
 
 		public Form1()
 		{
 			InitializeComponent();
+			
             c_Profile.Items.AddRange(NewAccount.readAccounts());
+			getMenu();
+		}
+
+		private async Task<int> getNearestStoreAsync() {
+			IDominosApi api = new DominosApi.DominosApi();
+			var deliveryAddress = new Address(Pizza.addr, Pizza.town, Pizza.state, Pizza.zip, Address.UnitCategory.House);
+			var locationData = await api.SearchLocations(deliveryAddress);
+
+			int? nearestStoreID = locationData.Stores.OrderBy(x => x.MinDistance)
+				.FirstOrDefault(x => x.ServiceIsOpen?.Delivery.Value ?? false)?.StoreID;
+
+			return nearestStoreID.Value;
+		}
+
+		private void getMenu() {
+			List<String> menuItems = new List<String>();
+			JObject jsonObj = JObject.Parse(System.IO.File.ReadAllText("menu.json"));
+			List<JProperty> props = new List<JProperty>();
+			foreach (JProperty prop in jsonObj.Properties())
+				props.Add(prop);
+
+			foreach (JProperty menuItem in props[0].Value) {
+				dynamic itemJSON = JsonConvert.DeserializeObject(menuItem.Value.ToString());
+				menuItems.Add(itemJSON.Name.ToString());
+			}
+
+			c_Menu.Items.AddRange(menuItems.ToArray());
+			c_Menu.Refresh();
 		}
 
 		private void setPizza()
@@ -62,6 +96,7 @@ namespace Pizza
             c_CardType.Text = Pizza.cardType = values[9];
             d_Expire.Text = Pizza.expire = values[10];
             t_Back.Text = Pizza.back = values[11];
+			t_Zip.Text = Pizza.zip = values[12];
         }
 
         private void b_Order_Click(object sender, EventArgs e)
@@ -95,7 +130,7 @@ namespace Pizza
 
 		private void b_Add_Click(object sender, EventArgs e)
 		{
-			//todo: display menu
+			r_Order.Text += c_Menu.Text + "\r\n";
 		}
 
         private void Form1_Load(object sender, EventArgs e)
@@ -113,31 +148,35 @@ namespace Pizza
 
         private void enableOrder()
         {
-            t_Addr.Enabled = t_CardNum.Enabled = t_Total.Enabled = t_Total.Enabled = t_Back.Enabled
-                = t_Town.Enabled = c_AddrType.Enabled = c_CardType.Enabled = c_State.Enabled
+            t_Addr.Enabled = t_CardNum.Enabled = t_Total.Enabled = t_Total.Enabled = t_Back.Enabled = t_Zip.Enabled
+                = t_Town.Enabled = c_AddrType.Enabled = c_CardType.Enabled = c_State.Enabled = c_Menu.Enabled
                 = b_Add.Enabled = b_Clear.Enabled = b_Order.Enabled = d_Expire.Enabled = true;
         }
 
         private void disableOrder()
         {
-            t_Addr.Enabled = t_CardNum.Enabled = t_Total.Enabled = t_Total.Enabled = t_Back.Enabled
-                = t_Town.Enabled = c_AddrType.Enabled = c_CardType.Enabled = c_State.Enabled
-                = b_Add.Enabled = b_Clear.Enabled = b_Order.Enabled = d_Expire.Enabled = false;
+            t_Addr.Enabled = t_CardNum.Enabled = t_Total.Enabled = t_Total.Enabled = t_Back.Enabled = t_Zip.Enabled
+				= t_Town.Enabled = c_AddrType.Enabled = c_CardType.Enabled = c_State.Enabled = c_Menu.Enabled
+				= b_Add.Enabled = b_Clear.Enabled = b_Order.Enabled = d_Expire.Enabled = false;
         }
 
         private void c_Profile_SelectedIndexChanged(object sender, EventArgs e)
         {
-            enableOrder();
+			enableOrder();
             String[] info = NewAccount.accountInfo(c_Profile.Text);
             setPizza(info);
-            if (info[0] == "") disableOrder();
-        }
+			if (info[0] == "")
+			{
+				disableOrder();
+				return;
+			}
+		}
 
-        private void b_Delete_Click(object sender, EventArgs e)
+		private void b_Delete_Click(object sender, EventArgs e)
         {
             NewAccount.removeAccount(c_Profile.Text);
             c_Profile.Items.Remove(c_Profile.Text);
             c_Profile.Refresh();
         }
-    }
+	}
 }

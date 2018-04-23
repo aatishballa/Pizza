@@ -59,3 +59,14 @@ C:\Users\Richard\Desktop\Pizza\Pizza\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Richard\Desktop\Pizza\Pizza\bin\Debug\System.ValueTuple.xml
 C:\Users\Richard\Desktop\Pizza\Pizza\obj\Debug\Pizza.csproj.CopyComplete
 C:\Users\Richard\Desktop\Pizza\Pizza\obj\Debug\Pizza.NewAccount.resources
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\FubarCoder.RestSharp.Portable.Core.dll
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\FubarCoder.RestSharp.Portable.HttpClient.dll
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\RestSharp.dll
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\System.ValueTuple.dll
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\FubarCoder.RestSharp.Portable.Core.xml
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\FubarCoder.RestSharp.Portable.HttpClient.xml
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\Newtonsoft.Json.xml
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\bin\Debug\System.ValueTuple.xml
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\obj\Debug\Pizza.NewAccount.resources
+C:\Users\cx3698ff\Desktop\Pizza-master\Pizza\obj\Debug\Pizza.Tracker.resources

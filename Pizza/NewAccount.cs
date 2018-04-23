@@ -40,7 +40,7 @@ namespace Pizza
                 t_Email.Text, t_Phone.Text, t_Addr.Text,
                 t_Town.Text, c_State.Text, c_AddrType.Text,
                 t_CardNum.Text, c_CardType.Text, d_Expire.Text,
-                t_Back.Text
+                t_Back.Text, t_Zip.Text
             };
 
             return values;
@@ -174,7 +174,7 @@ namespace Pizza
             }
 
             MessageBox.Show("Account info not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return new[] { "", "", "", "", "", "", "", "", "", "", "", "" };
+            return new[] { "", "", "", "", "", "", "", "", "", "", "", "", ""};
         }
 
         public static void removeAccount(String name)

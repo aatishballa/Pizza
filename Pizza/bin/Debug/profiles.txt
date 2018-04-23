@@ -1,2 +1,1 @@
-R	C	jd@gmail.com	123	72	town	MN	House	123	Visa	Friday, April 20, 2018	123	
-Ri	Ca	john@gmail.com	121	12121	adklfj	MN	House	123	Visa	Thursday, June 20, 2019	123	
+a	b	c	d	701 Paul Bunyan Dr NW	Bemidji	MN	House	a	Visa	Monday, April 23, 2018	a	56601	
