@@ -16,5 +16,17 @@ namespace Pizza
         {
             InitializeComponent();
         }
+        
+        //
+        
+        private void Tracker_Load(object sender, EventArgs e)
+        {
+            play_music();
+        }
+
+        public void play_music() {
+            SoundPlayer advertisemnt_1 = new SoundPlayer("1.wav");
+            advertisemnt_1.Play();
+        }
     }
 }
